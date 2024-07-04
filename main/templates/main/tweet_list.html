@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tweet List</title>
+</head>
+<body>
+    <h1>Tweets</h1>
+    <a href="{% url 'tweet_create' %}">Create Tweet</a>
+    <ul>
+        {% for tweet in tweets %}
+            <li>
+                <strong>{{ tweet.author.username }}</strong>: {{ tweet.content }} <br>
+                <small>{{ tweet.created_at }}</small>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

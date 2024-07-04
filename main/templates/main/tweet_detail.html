@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ tweet.content }}</title>
+</head>
+<body>
+    <header>
+        <h1>{{ tweet.content }}</h1>
+        <p>by {{ tweet.author.username }} on {{ tweet.created_at }}</p>
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'tweet_create' %}">Create Tweet</a></li>
+                <li><a href="{% url 'tweet_list' %}">All Tweets</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2>Comments</h2>
+        <ul>
+            {% for comment in comments %}
+            <li>
+                <p>{{ comment.content }} by {{ comment.author.username }} on {{ comment.created_at }}</p>
+            </li>
+            {% endfor %}
+        </ul>
+        <h2>Add a Comment</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ comment_form.as_p }}
+            <button type="submit">Add Comment</button>
+        </form>
+    </main>
+</body>
+</html>
